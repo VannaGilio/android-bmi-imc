@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="logo">Logo do aplicativo</string>
+    <string name="welcome">Bem-Vindo!</string>
+    <string name="your_name">Qual seu nome?</string>
+    <string name="next">Próximo</string>
+    <string name="label_name">Escreva o seu nome</string>
+</resources>
