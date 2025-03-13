@@ -5,4 +5,11 @@
     <string name="your_name">Qual seu nome?</string>
     <string name="next">Próximo</string>
     <string name="label_name">Escreva o seu nome</string>
+    <string name="hi">Olá !</string>
+    <string name="male">Homem</string>
+    <string name="Female">Mulher</string>
+    <string name="age">Idade</string>
+    <string name="weight">Peso</string>
+    <string name="height">Altura</string>
+    <string name="calculate">Calcular</string>
 </resources>

@@ -56,4 +56,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Dependencia de icons
+    implementation(libs.androidx.material.icons.extended.android)
+
+    //Dependencia de navegação entre telas
+    implementation(libs.androidx.navigation.compose)
 }
