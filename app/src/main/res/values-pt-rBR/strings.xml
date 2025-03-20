@@ -7,9 +7,17 @@
     <string name="label_name">Escreva o seu nome</string>
     <string name="hi">Olá !</string>
     <string name="male">Homem</string>
-    <string name="Female">Mulher</string>
+    <string name="female">Mulher</string>
     <string name="age">Idade</string>
     <string name="weight">Peso</string>
     <string name="height">Altura</string>
     <string name="calculate">Calcular</string>
+    <string name="result">Resultado do Seu BMI</string>
+    <string name="result_text">Você tem a Classe | Obesidade</string>
+    <string name="result_number">30,6</string>
+    <string name="age_result">50</string>
+    <string name="weight_result">97 Kg</string>
+    <string name="high_result">178 Cm</string>
+    <string name="new_cacl">Novo Cálculo</string>
+
 </resources>

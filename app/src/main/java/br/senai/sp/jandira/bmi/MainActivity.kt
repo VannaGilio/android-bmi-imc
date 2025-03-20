@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.senai.sp.jandira.bmi.screens.BMIResultScreen
 import br.senai.sp.jandira.bmi.screens.UserDataScreen
 import br.senai.sp.jandira.bmi.screens.HomeScreen
 import br.senai.sp.jandira.bmi.ui.theme.BMITheme
@@ -23,7 +24,8 @@ class MainActivity : ComponentActivity() {
                     startDestination = "home"
                 ){
                     composable(route = "home"){ HomeScreen(navegacao) }
-                    composable(route = "dados"){ UserDataScreen() }
+                    composable(route = "dados"){ UserDataScreen(navegacao) }
+                    composable(route = "resultado"){ BMIResultScreen(navegacao) }
                 }
             }
         }

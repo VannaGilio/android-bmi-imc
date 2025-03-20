@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -46,10 +47,10 @@ fun HomeScreen(navegacao: NavHostController) {
         modifier = Modifier // mudar tamanho
             .fillMaxSize() //tamanho da tela
             .background(
-                brush = Brush.horizontalGradient(
+                brush = Brush.verticalGradient(
                     listOf(
-                        Color(0xFF594575),
-                        Color(0xFF2B4559)
+                        Color(0xFF15273D),
+                        Color(0xFF5B7D96)
                     )
                 )
             )
@@ -133,6 +134,7 @@ fun HomeScreen(navegacao: NavHostController) {
                     )
                     {
                         Button(
+                            colors = ButtonDefaults.buttonColors(Color(0xFF283B56)),
                             onClick = {
                                 navegacao.navigate("dados")
                             }
@@ -153,5 +155,6 @@ fun HomeScreen(navegacao: NavHostController) {
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeScreenPreview() {
-  //  HomeScreen(navegacao)
+//    HomeScreen(navegacao)
+
 }
