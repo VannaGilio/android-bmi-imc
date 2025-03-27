@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,10 +12,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -24,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +49,18 @@ fun HomeScreen(navegacao: NavHostController) {
         mutableStateOf("")
     }
 
+    val isErrorState = remember {
+        mutableStateOf(false)
+    }
+
+    //Abir ou criar um arquivo SharedPreferences
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    // Colocar o arquivo em modo de edição
+    val editor = userFile.edit()
+
     Box(
         modifier = Modifier // mudar tamanho
             .fillMaxSize() //tamanho da tela
@@ -54,7 +72,7 @@ fun HomeScreen(navegacao: NavHostController) {
                     )
                 )
             )
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -90,12 +108,12 @@ fun HomeScreen(navegacao: NavHostController) {
                         containerColor = Color.White
                     )
             ) {
-                Column (
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(30.dp),
                     verticalArrangement = Arrangement.SpaceBetween
-                ){
+                ) {
                     Column {
                         Text(
                             text = stringResource(
@@ -110,33 +128,60 @@ fun HomeScreen(navegacao: NavHostController) {
                             onValueChange = {
                                 nameState.value = it
                             },
-                            label = { Text(
-                                text = stringResource(
-                                    R.string.label_name
+                            label = {
+                                Text(
+                                    text = stringResource(
+                                        R.string.label_name
+                                    )
                                 )
-                            ) },
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 15.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Text,
                                 capitalization = KeyboardCapitalization.Words
-                            )
+                            ),
+                            trailingIcon = {
+                                if (isErrorState.value){
+                                    Icon(
+                                        imageVector = Icons.Default.Error,
+                                        contentDescription = "",
+                                        tint = Color.Red
+                                    )
+                                }
+                            },
+                            isError = isErrorState.value,
+                            supportingText = {
+                                if (isErrorState.value) {
+                                    Text(
+                                        text = stringResource(
+                                            R.string.error_name_home)
+                                    )
+                                }
+                            },
                         )
                     }
 
-                    Column (
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),
                         horizontalAlignment = (Alignment.End),
 
-                    )
+                        )
                     {
                         Button(
                             colors = ButtonDefaults.buttonColors(Color(0xFF283B56)),
                             onClick = {
-                                navegacao.navigate("dados")
+                                if (nameState.value.isEmpty()) {
+                                        isErrorState.value = true
+                                    } else {
+                                    editor.putString("user_name", nameState.value)
+                                    editor.putString("user_name", nameState.value)
+                                    editor.apply()
+                                    navegacao.navigate("dados")
+                                }
                             }
                         ) {
                             Text(

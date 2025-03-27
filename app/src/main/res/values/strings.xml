@@ -5,7 +5,7 @@
     <string name="your_name">What\'s your name?</string>
     <string name="next">Next</string>
     <string name="label_name">Write your name</string>
-    <string name="hi">Hi !</string>
+    <string name="hi">Hi</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="age">Age</string>
@@ -15,10 +15,11 @@
     <string name="result">Your BMI Result</string>
     <string name="result_text">You have Class | Obesity</string>
     <string name="result_number">30,6</string>
-    <string name="age_result">50</string>
-    <string name="weight_result">97 Kg</string>
-    <string name="high_result">178 Cm</string>
+    <string name="age_result"></string>
+    <string name="weight_result"></string>
+    <string name="high_result"></string>
     <string name="new_cacl">New Calc</string>
+    <string name="error_name_home">Name is Obrigatirui</string>
 
 
 

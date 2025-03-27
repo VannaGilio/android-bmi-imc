@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +38,15 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 fun BMIResultScreen(navegacao: NavHostController) {
+
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    val userAge = userFile.getInt("user_age", 0)
+    val userWeight = userFile.getFloat("user_weight", 0.0f)
+    val userHeight = userFile.getFloat("user_height", 0.0f)
+
     Box(
         modifier = Modifier
             .background(
@@ -162,9 +173,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                         Text(
                                             modifier = Modifier,
                                             color = Color(0xFFFFFFFF),
-                                            text = stringResource(
-                                                R.string.age_result
-                                            )
+                                            text = "$userAge"
                                         )
                                     }
                                     Divider(
@@ -188,9 +197,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                         Text(
                                             modifier = Modifier,
                                             color = Color(0xFFFFFFFF),
-                                            text = stringResource(
-                                                R.string.weight_result
-                                            )
+                                            text = "$userWeight"
                                         )
                                     }
                                     Divider(
@@ -214,9 +221,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                         Text(
                                             modifier = Modifier,
                                             color = Color(0xFFFFFFFF),
-                                            text = stringResource(
-                                                R.string.high_result
-                                            )
+                                            text = "$userHeight"
                                         )
                                     }
                                 }

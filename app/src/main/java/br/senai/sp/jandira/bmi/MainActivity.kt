@@ -22,10 +22,10 @@ class MainActivity : ComponentActivity() {
                 NavHost(
                     navController = navegacao,
                     startDestination = "home"
-                ){
-                    composable(route = "home"){ HomeScreen(navegacao) }
-                    composable(route = "dados"){ UserDataScreen(navegacao) }
-                    composable(route = "resultado"){ BMIResultScreen(navegacao) }
+                ) {
+                    composable(route = "home") { HomeScreen(navegacao) }
+                    composable(route = "dados") { UserDataScreen(navegacao) }
+                    composable(route = "resultado") { BMIResultScreen(navegacao) }
                 }
             }
         }

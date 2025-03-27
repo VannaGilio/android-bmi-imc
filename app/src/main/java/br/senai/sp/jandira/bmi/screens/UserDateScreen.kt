@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.DateRange
@@ -30,9 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,6 +55,13 @@ fun UserDataScreen(navegacao: NavHostController) {
     var heightState = remember {
         mutableStateOf("")
     }
+
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    val userName = userFile.getString("user_name", "User name not found!")
+
     Box(
         modifier = Modifier
             .background(
@@ -63,7 +75,7 @@ fun UserDataScreen(navegacao: NavHostController) {
             )
     )
     {
-        Column{
+        Column {
             Text(
                 modifier = Modifier
                     .padding(start = 10.dp)
@@ -74,21 +86,21 @@ fun UserDataScreen(navegacao: NavHostController) {
 
                 text = stringResource(
                     R.string.hi
-                )
+                ) + ", $userName!",
             )
 
-            Card (
+            Card(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(top = 60.dp),
                 shape = RoundedCornerShape(topEnd = 30.dp, topStart = 30.dp),
-            ){
-                Column (
+            ) {
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = Color(0xFFFFFFFF))
-                ){
-                    Row (
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 60.dp)
@@ -99,12 +111,12 @@ fun UserDataScreen(navegacao: NavHostController) {
                         Column(
                             modifier = Modifier
                                 .background(color = Color(0xFFFFFFFF))
-                        ){
-                            Card (
-                                modifier =  Modifier
+                        ) {
+                            Card(
+                                modifier = Modifier
                                     .size(130.dp),
                                 shape = CircleShape
-                            ){
+                            ) {
                                 Image(
                                     modifier = Modifier
                                         .fillMaxSize(),
@@ -133,12 +145,12 @@ fun UserDataScreen(navegacao: NavHostController) {
                         Column(
                             modifier = Modifier
                                 .background(color = Color(0xFFFFFFFF))
-                        ){
-                            Card (
-                                modifier =  Modifier
+                        ) {
+                            Card(
+                                modifier = Modifier
                                     .size(130.dp),
                                 shape = CircleShape
-                            ){
+                            ) {
                                 Image(
                                     modifier = Modifier
                                         .fillMaxSize(),
@@ -165,7 +177,7 @@ fun UserDataScreen(navegacao: NavHostController) {
                             }
                         }
                     }
-                    Column (
+                    Column(
                         modifier = Modifier
                             .padding(20.dp)
                     ) {
@@ -192,6 +204,10 @@ fun UserDataScreen(navegacao: NavHostController) {
                                     tint = Color(0xFF283B56)
                                 )
                             },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
+                            )
                         )
                         OutlinedTextField(
                             value = weightState.value,
@@ -216,6 +232,10 @@ fun UserDataScreen(navegacao: NavHostController) {
                                     tint = Color(0xFF283B56)
                                 )
                             },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
+                            )
                         )
                         OutlinedTextField(
                             value = heightState.value,
@@ -240,25 +260,34 @@ fun UserDataScreen(navegacao: NavHostController) {
                                     tint = Color(0xFF283B56)
                                 )
                             },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done
+                            )
                         )
-                        Column (
+                        Column(
                             modifier = Modifier,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Button(
-                            modifier = Modifier
-                                .padding(top = 70.dp)
-                                .fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(Color(0xFF283B56)),
-                            onClick = {
-                                navegacao.navigate("resultado")
-                            }
+                                modifier = Modifier
+                                    .padding(top = 70.dp)
+                                    .fillMaxWidth(),
+                                colors = ButtonDefaults.buttonColors(Color(0xFF283B56)),
+                                onClick = {
+                                    val editor = userFile.edit()
+                                    editor.putInt("user_age", ageState.value.toInt())
+                                    editor.putFloat("user_weight", weightState.value.toFloat())
+                                    editor.putFloat("user_height", heightState.value.toFloat())
+                                    editor.apply()
+                                    navegacao.navigate("resultado")
+                                }
                             ) {
-                            Text(
-                                text = stringResource(
-                                    R.string.calculate
+                                Text(
+                                    text = stringResource(
+                                        R.string.calculate
+                                    )
                                 )
-                            )
                             }
                         }
                     }
@@ -267,6 +296,7 @@ fun UserDataScreen(navegacao: NavHostController) {
         }
     }
 }
+
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeScreenPreview() {
