@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import java.util.Locale
 
 
 @Composable
@@ -185,7 +186,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                     Column (
                                         horizontalAlignment = Alignment.CenterHorizontally,
                                         modifier = Modifier
-                                            .width(50.dp)
+                                            .width(60.dp)
                                     ){
                                         Text(
                                             modifier = Modifier,
@@ -197,7 +198,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                         Text(
                                             modifier = Modifier,
                                             color = Color(0xFFFFFFFF),
-                                            text = "$userWeight"
+                                            text =  "$userWeight Kg"
                                         )
                                     }
                                     Divider(
@@ -221,7 +222,7 @@ fun BMIResultScreen(navegacao: NavHostController) {
                                         Text(
                                             modifier = Modifier,
                                             color = Color(0xFFFFFFFF),
-                                            text = "$userHeight"
+                                            text = String.format(Locale.getDefault(), "%.2f", userHeight)
                                         )
                                     }
                                 }

@@ -20,5 +20,11 @@
     <string name="high_result"></string>
     <string name="new_cacl">Novo Cálculo</string>
     <string name="error_name_home">O nome é obrigatório</string>
+    <string name="under_weight">Você está um pouco abaixo do peso</string>
+    <string name="normal">Parabéns Você está com peso ideal</string>
+    <string name="over_weight">Você está um pouco acima do peso ideal!</string>
+    <string name="obsity_1">Atenção, Você está com Obesidade Classe I</string>
+    <string name="obsity_2">Atenção, Você está com Obesidade Classe II</string>
+    <string name="obsity_3">Atenção, Você está com Obesidade Classe III</string>
 
 </resources>

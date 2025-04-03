@@ -19,7 +19,13 @@
     <string name="weight_result"></string>
     <string name="high_result"></string>
     <string name="new_cacl">New Calc</string>
-    <string name="error_name_home">Name is Obrigatirui</string>
+    <string name="error_name_home">Name is Obrigatório</string>
+    <string name="under_weight">You  </string>
+    <string name="normal">You have Class | Normal </string>
+    <string name="over_weight">You have Class | Over Weight </string>
+    <string name="obsity_1">You have Class | Obesity I </string>
+    <string name="obsity_2">You have Class | Obesity II</string>
+    <string name="obsity_3">You have Class | Obesity III</string>
 
 
 
